@@ -10,10 +10,13 @@ def main():
         from django.core.management import execute_from_command_line
         from django.core.management.utils import get_random_secret_key
 
+        remote_base_name = os.path.dirname(os.path.abspath(__file__))
+        remote_path_name = os.path.normpath(os.path.join(remote_base_name, 'mysite/local_settings.py'))
+
         secret_key = get_random_secret_key()
         text = 'SECRET_KEY = \'{0}\''.format(secret_key)
 
-        with open('mysite/local_settings.py', mode='w') as f:
+        with open(remote_path_name, mode='w') as f:
             f.write(text)
 
     except ImportError as exc:
