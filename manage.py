@@ -8,6 +8,14 @@ def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
     try:
         from django.core.management import execute_from_command_line
+        from django.core.management.utils import get_random_secret_key
+
+        secret_key = get_random_secret_key()
+        text = 'SECRET_KEY = \'{0}\''.format(secret_key)
+
+        with open('mysite/local_settings.py', 'w') as f:
+            print(text, file=f)
+
     except ImportError as exc:
         raise ImportError(
             "Couldn't import Django. Are you sure it's installed and "
