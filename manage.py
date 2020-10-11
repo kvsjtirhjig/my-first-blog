@@ -13,8 +13,8 @@ def main():
         secret_key = get_random_secret_key()
         text = 'SECRET_KEY = \'{0}\''.format(secret_key)
 
-        with open('mysite/local_settings.py', 'w') as f:
-            print(text, file=f)
+        with open('mysite/local_settings.py', mode='w') as f:
+            f.write(text)
 
     except ImportError as exc:
         raise ImportError(
